@@ -10,7 +10,7 @@ class Vehicle extends Model
     use HasFactory;
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id'); //edo grafo to user_id gia na kano poio sygkekrimeno se poio reference key anaferomai afoy ston idio pinaka exo dyo kseno kleidi poy dixnoyn kai ta dyo ston idio pinaka (Users)
     }
 
     public function mechanic()
