@@ -15,4 +15,4 @@ class HomeService extends Controller
         $vehicles = Vehicle::with('user')->where('user_id',$id)->get();
         return view('welcome',compact('vehicles'));
     }
-}
+} //test
