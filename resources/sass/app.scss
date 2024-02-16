@@ -1,0 +1,35 @@
+// Fonts
+@import url("https://fonts.bunny.net/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+.main-welcome {
+    margin: 10px;
+    display: flex;
+}
+.welcome-75-div {
+    flex: 75%;
+    border: solid;
+    border-color: red;
+    order: 2;
+}
+.welcome-25-div {
+    flex: 25%;
+    border: solid;
+    border-color: green;
+    order: 1;
+}
+@media (max-width: 768px) {
+    .main-welcome {
+        flex-direction: column;
+    }
+
+    .welcome-75-div,
+    .welcome-25-div {
+        flex: 100%;
+    }
+}
