@@ -14,7 +14,7 @@ use App\Http\Controllers\HomeService;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeService::class, 'index'])->name('index')->middleware('auth');
+Route::any('/', [App\Http\Controllers\HomeService::class, 'index'])->name('index')->middleware('auth');
 
 Auth::routes();
 
