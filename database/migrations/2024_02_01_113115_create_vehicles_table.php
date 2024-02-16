@@ -22,6 +22,9 @@ return new class extends Migration
             $table->float('cc',8,2)->nullable();
             $table->integer('hp')->nullable();
             $table->string('color')->nullable();
+            $table->string('vehicle_type')->nullable();
+            $table->integer('registration_year')->nullable();
+            $table->integer('registration_month')->nullable();
             $table->unsignedBigInteger('gas_type_id')->nullable();
             $table->unsignedBigInteger('mechanic_id')->nullable();
             $table->unsignedBigInteger('user_id');

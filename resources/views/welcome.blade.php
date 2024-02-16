@@ -47,7 +47,7 @@
                 <label for="moto">Moto</label>
             </div>
             <div>
-                <input type="radio" name="truck" id="truck" value="Truck">
+                <input type="radio" name="vehicleType" id="truck" value="Truck">
                 <label for="truck">Truck</label>
             </div>
             <input type="submit" value="Submit">
