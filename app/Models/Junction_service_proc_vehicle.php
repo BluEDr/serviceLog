@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Junction_service_proc_vehicle extends Model
 {
     use HasFactory;
+
 }

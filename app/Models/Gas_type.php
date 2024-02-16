@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Gas_type extends Model
 {
     use HasFactory;
+    
+    public function vehicle()
+    {
+        return $this->belongsTo(Vehicle::class);
+    }
 }
