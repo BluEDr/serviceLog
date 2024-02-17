@@ -2,16 +2,10 @@
 
 @section('content')
 {{-- to if apo kato einai kapos anoysio afoy pernaei prota apo to middleware(Auth) --}}
-@if(Auth::check())
-<p>Welcome {{Auth::user()->name}}</p>
-@else
-<p>Welcome!</p>
-@endif
 <div class='main-welcome'>
     <div class='welcome-75-div'>
         <h4><strong>Your vehicle data:</strong></h4>
         @if($vehicles->count() > 0)
-            <p>there is</p>
             <table class="table table-striped">
             <th>Brand</th><th>Model</th><th>Plate-Number</th><th>Km</th><th>Color</th><th>Vehicle Type</th><th>Delete</th>
             @foreach($vehicles as $v)
