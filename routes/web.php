@@ -15,6 +15,7 @@ use App\Http\Controllers\HomeService;
 */
 
 Route::any('/', [App\Http\Controllers\HomeService::class, 'index'])->name('index')->middleware('auth');
+Route::any('/delete-vehicle/{id}', [App\Http\Controllers\HomeService::class, 'delete_vehicle'])->name('delete-vehicle')->middleware('auth');
 
 Auth::routes();
 

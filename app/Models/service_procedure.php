@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class service_procedure extends Model
 {
     use HasFactory;
-    
+    protected $fillable = ['name'];
     public function junction_service_proc_vehicle()
     {
         return $this->belongsTo(Junction_service_proc_vehicle::class);

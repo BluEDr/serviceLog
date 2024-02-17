@@ -12,10 +12,54 @@
         <h4><strong>Your vehicle data:</strong></h4>
         @if($vehicles->count() > 0)
             <p>there is</p>
+            <table class="table table-striped">
+            <th>Brand</th><th>Model</th><th>Plate-Number</th><th>Km</th><th>Color</th><th>Vehicle Type</th><th>Delete</th>
             @foreach($vehicles as $v)
-            <p>{{$v->brand}}</p>
-            <p style="color: red">{{$v->user->name}}</p>
+            <tr>
+                <td>
+                    {{$v->brand}}
+                </td> 
+                <td>
+                    @if ($v->model != null)
+                        {{$v->model}}
+                    @else
+                        -
+                    @endif
+                </td>
+                <td>
+                    @if ($v->plate_number != null)
+                        {{$v->plate_number}}
+                    @else
+                        -
+                    @endif
+                </td>
+                <td>
+                    @if ($v->km != null)
+                        {{$v->km}}
+                    @else
+                        -
+                    @endif
+                </td>
+                <td>
+                    @if ($v->color != null)
+                        {{$v->color}}
+                    @else
+                        -
+                    @endif
+                </td>
+                <td>
+                    @if ($v->vehicle_type != null)
+                        {{$v->vehicle_type}}
+                    @else
+                        -
+                    @endif
+                </td>
+                <td>
+                    <a href="{{route('delete-vehicle',['id' => $v->id])}}"><button type="button" class="btn-close" aria-label="Close"></button> </a>
+                </td>
+            </tr>
             @endforeach
+            </table>
         @else
             <p>There is no vehicle data inserted</p>
         @endif
@@ -31,13 +75,16 @@
             </div>
         @endif
         <h4><strong>Add a new Vehicle here:</strong></h4>
-        <form action="">
+        <form method="post" action="">
+            @csrf
             <h5>Fill your plate number:</h5>
             <input type="text" name="plate" id="plate">
             <h5>Write your vehicles brand: <span style="color: red">*</span></h5>
             <input type="text" name="brand" id="brand">
             <h5>Write your vehicles model:</h5>
             <input type="text" name="model" id="model">
+            <h5>How many kilometers has your vehicle?:</h5>
+            <input type="text" name="km" id="km">
             <div>
                 <h5>Vehicle registration:</h5>
                 <select name="month">
