@@ -19,6 +19,11 @@ class Vehicle extends Model
         return $this->belongsTo(User::class, 'mechanic_id');
     }
 
+    public function gas_type() //many to many relationchip with service_procedure
+    {
+        return $this->belongsTo(Gas_type::class);
+    }
+
     public function service_procedure() //many to many relationchip with service_procedure
     {
         return $this->belongsToMany(service_procedure::class);

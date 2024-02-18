@@ -7,46 +7,49 @@
         <h4><strong>Your vehicle data:</strong></h4>
         @if($vehicles->count() > 0)
             <table class="table table-striped">
-            <th>Brand</th><th>Model</th><th>Plate-Number</th><th>Km</th><th>Color</th><th>Vehicle Type</th><th>Delete</th>
+            <th>Brand</th><th>Model</th><th>Plate-Number</th><th>Km</th><th>Color</th><th>Vehicle Type</th><th>Gas Type</th><th>Delete</th>
             @foreach($vehicles as $v)
             <tr>
-                <td>
+                <td onclick="window.location='{{ route('vehicle-more', ['id' => $v->id]) }}';" style="cursor:pointer;">
                     {{$v->brand}}
                 </td> 
-                <td>
+                <td onclick="window.location='{{ route('vehicle-more', ['id' => $v->id]) }}';" style="cursor:pointer;">
                     @if ($v->model != null)
                         {{$v->model}}
                     @else
                         -
                     @endif
                 </td>
-                <td>
+                <td onclick="window.location='{{ route('vehicle-more', ['id' => $v->id]) }}';" style="cursor:pointer;">
                     @if ($v->plate_number != null)
                         {{$v->plate_number}}
                     @else
                         -
                     @endif
                 </td>
-                <td>
+                <td onclick="window.location='{{ route('vehicle-more', ['id' => $v->id]) }}';" style="cursor:pointer;">
                     @if ($v->km != null)
                         {{$v->km}}
                     @else
                         -
                     @endif
                 </td>
-                <td>
+                <td onclick="window.location='{{ route('vehicle-more', ['id' => $v->id]) }}';" style="cursor:pointer;">
                     @if ($v->color != null)
                         {{$v->color}}
                     @else
                         -
                     @endif
                 </td>
-                <td>
+                <td onclick="window.location='{{ route('vehicle-more', ['id' => $v->id]) }}';" style="cursor:pointer;">
                     @if ($v->vehicle_type != null)
                         {{$v->vehicle_type}}
                     @else
                         -
                     @endif
+                </td>
+                <td onclick="window.location='{{ route('vehicle-more', ['id' => $v->id]) }}';" style="cursor:pointer;">
+                    {{$v->gas_type ? $v->gas_type->name : '-'}}
                 </td>
                 <td>
                     <a href="{{route('delete-vehicle',['id' => $v->id])}}"><button type="button" class="btn-close" aria-label="Close"></button> </a>
@@ -110,6 +113,15 @@
                     <option value="orange">Orange</option>
                 </select>
             </div>
+            <div>
+            <h5> Fuel </h5>
+            <select name="fuel">
+                <option value="-" selected> - </option>
+                @foreach($gas_t as $g)
+                    <option value="{{$g->id}}">{{$g->name}}</option>
+                @endforeach
+            </select>
+        </div>
             <div>
                 <h5>Select your Vehicle type: <span style="color: red">*</span></h5>
                 <input type="radio" name="vehicleType" id="car" value="Car" checked>

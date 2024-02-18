@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeService;
+use App\Http\Controllers\VehicleServiceAndMore;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use App\Http\Controllers\HomeService;
 
 Route::any('/', [App\Http\Controllers\HomeService::class, 'index'])->name('index')->middleware('auth');
 Route::any('/delete-vehicle/{id}', [App\Http\Controllers\HomeService::class, 'delete_vehicle'])->name('delete-vehicle')->middleware('auth');
+Route::any('/vehicle-more/{id}', [App\Http\Controllers\VehicleServiceAndMore::class, 'vehicleMore'])->name('vehicle-more')->middleware('auth');
 
 Auth::routes();
 

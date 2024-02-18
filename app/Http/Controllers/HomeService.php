@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vehicle;
+use App\Models\Gas_type;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
@@ -12,11 +13,12 @@ class HomeService extends Controller
     public function index(Request $request) {
 
         $id = Auth::user()->id;
-        $vehicles = Vehicle::with('user')->where('user_id',$id)->get();
+        $vehicles = Vehicle::with('user','gas_type')->where('user_id',$id)->get();
+        $gas_t = Gas_type::all();
         if($request->isMethod('post')) {
             $validatedData = $request->validate([
                 'brand' => 'required | string',
-                'km' => 'numeric'
+                'km' => 'nullable |numeric'
             ], [
                 'brand.required' => 'brand required',
                 'km.numeric' => 'Wrong value in km'
@@ -30,15 +32,16 @@ class HomeService extends Controller
                 'registration_month' => ($request->input('month') == '-') ? null : $request->input('month'),
                 'registration_year' => ($request->input('year') == '-') ? null : $request->input('year'),
                 'color' => ($request->input('color') == '-') ? null : $request->input('color'), 
+                'gas_type_id' => ($request->input('fuel') == '-') ? null : $request->input('fuel'),
                 'vehicle_type' => $request->input('vehicleType'),
                 'km' => $request->input('km'),
                 'user_id' => $id, // Set the user_id to the currently authenticated user's ID
             ]);
 
 
-            $vehicles = Vehicle::with('user')->where('user_id',$id)->get();
+            $vehicles = Vehicle::with('user','gas_type')->where('user_id',$id)->get();
         }   
-        return view('welcome',compact('vehicles'));
+        return view('welcome',compact('vehicles'),compact('gas_t'));
     }
 
     public function delete_vehicle($id) {
