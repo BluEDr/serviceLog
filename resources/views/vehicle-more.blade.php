@@ -7,13 +7,25 @@
         <th>Brand</th><th>Model</th><th>Plate number</th>
         <tr>
             <td>
-                {{$vehicles[0]->brand}}
+                {{$vehicles->brand}}
             </td>
             <td>
-                {{$vehicles[0]->model}}
+                {{$vehicles->model}}
             </td>
             <td>
-                {{$vehicles[0]->plate_number}}
+                {{$vehicles->plate_number}}
+            </td>
+            <td>
+                {{$vehicles->vehicle_type}}
+            </td>
+            <td>
+                {{$vehicles->registration_year}}
+            </td>
+            <td>
+                {{$vehicles->plate_number}}
+            </td>
+            <td>
+                {{($vehicles->gas_type != null) ? $vehicles->gas_type->name : '-'}}
             </td>
         </tr>
     </table>
