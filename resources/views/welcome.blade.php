@@ -7,7 +7,7 @@
         <h4><strong>Your vehicle data:</strong></h4>
         @if($vehicles->count() > 0)
             <table class="table table-striped">
-            <th>Brand</th><th>Model</th><th>Plate-Number</th><th>Km</th><th>Color</th><th>Vehicle Type</th><th>Gas Type</th><th>Delete</th>
+            <th>Brand</th><th>Model</th><th>Plate-Number</th><th>Km</th><th>Color</th><th>Vehicle Type</th><th>Gas Type</th><th>Delete</th><th>Edit</th>
             @foreach($vehicles as $v)
             <tr>
                 <td onclick="window.location='{{ route('vehicle-more', ['id' => $v->id]) }}';" style="cursor:pointer;">
@@ -53,6 +53,9 @@
                 </td>
                 <td>
                     <a href="{{route('delete-vehicle',['id' => $v->id])}}"><button type="button" class="btn-close" aria-label="Close"></button> </a>
+                </td>
+                <td>
+                    <a href="{{route('edit-vehicle',['id' => $v->id])}}"><img src="{{ asset('images/icons/pen.png') }}" alt="Edit"></a>
                 </td>
             </tr>
             @endforeach

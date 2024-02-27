@@ -4,7 +4,7 @@
 {{-- to if apo kato einai kapos anoysio afoy pernaei prota apo to middleware(Auth) --}}
 <div class='main-welcome'>
     <table class="table table-striped">
-        <th>Brand</th><th>Model</th><th>Plate number</th>
+        <th>Brand</th><th>Model</th><th>Plate number</th><th>Vehicle Type</th><th>Registration Year</th><th>Fuel</th>
         <tr>
             <td>
                 {{$vehicles->brand}}
@@ -20,9 +20,6 @@
             </td>
             <td>
                 {{$vehicles->registration_year}}
-            </td>
-            <td>
-                {{$vehicles->plate_number}}
             </td>
             <td>
                 {{($vehicles->gas_type != null) ? $vehicles->gas_type->name : '-'}}
