@@ -18,7 +18,7 @@ use App\Http\Controllers\VehicleServiceAndMore;
 Route::any('/', [App\Http\Controllers\HomeService::class, 'index'])->name('index')->middleware('auth');
 Route::any('/delete-vehicle/{id}', [App\Http\Controllers\HomeService::class, 'delete_vehicle'])->name('delete-vehicle')->middleware('auth');
 Route::get('/vehicle-more/{id}', [App\Http\Controllers\VehicleServiceAndMore::class, 'vehicleMore'])->name('vehicle-more')->middleware('auth');
-Route::get('/edit-vehicle/{id}', [App\Http\Controllers\VehicleServiceAndMore::class, 'editVehicle'])->name('edit-vehicle')->middleware('auth');
+Route::any('/edit-vehicle/{id}', [App\Http\Controllers\VehicleServiceAndMore::class, 'editVehicle'])->name('edit-vehicle')->middleware('auth');
 
 Auth::routes();
 
