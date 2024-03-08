@@ -11,6 +11,11 @@
             </ul>
         </div>
     @endif
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 </div>
 <div class="centered-h1">
     <h1>Edit your {{$vehicles->brand}} data.</h1>
@@ -40,7 +45,7 @@
                     <select class="form-control" name="fuel">
                         <option value="-" {{($vehicles->gas_type==null) ? "selected" : ""}}>-</option>
                         @foreach ($gas_t as $collection)
-                            <option value="{{$collection->name}}" {{($vehicles->gas_type == $collection) ? "selected" : ""}}>{{$collection->name}}</option>
+                            <option value="{{$collection->id}}" {{($vehicles->gas_type == $collection) ? "selected" : ""}}>{{$collection->name}}</option>
                         @endforeach
                     </select>
                     <input class="dropdown-menu" type="dropdown" placeholder="{{($vehicles->gas_type != null) ? $vehicles->gas_type->name : '-'}}" value="{{($vehicles->gas_type != null) ? $vehicles->gas_type->name : '-'}}">
@@ -68,7 +73,7 @@
                         <option value="silver" {{($vehicles->color == 'silver') ? 'selected' : ''}}>Silver</option>
                         <option value="green" {{($vehicles->color == 'green') ? 'selected' : ''}}>Green</option>
                         <option value="brown" {{($vehicles->color == 'brown') ? 'selected' : ''}}>Brown</option>
-                        <option value="purple {{($vehicles->color == 'purple') ? 'selected' : ''}}">Purple</option>
+                        <option value="purple" {{($vehicles->color == 'purple') ? 'selected' : ''}}>Purple</option>
                         <option value="gold" {{($vehicles->color == 'gold') ? 'selected' : ''}}>Gold</option>
                         <option value="orange" {{($vehicles->color == 'orange') ? 'selected' : ''}}>Orange</option>
                     </select>                </td>
@@ -92,6 +97,7 @@
             <tr>
                 <td>
                     <input type="submit" class="btn btn-secondary" value="Update">
+                    {{-- <input type="button" class="btn btn-secondary" value="Clear all"> --}}
                 </td>
                 <td></td>
                 <td></td>
