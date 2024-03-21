@@ -19,6 +19,7 @@ Route::any('/', [App\Http\Controllers\HomeService::class, 'index'])->name('index
 Route::any('/delete-vehicle/{id}', [App\Http\Controllers\HomeService::class, 'delete_vehicle'])->name('delete-vehicle')->middleware('auth');
 Route::get('/vehicle-more/{id}', [App\Http\Controllers\VehicleServiceAndMore::class, 'vehicleMore'])->name('vehicle-more')->middleware('auth');
 Route::any('/edit-vehicle/{id}', [App\Http\Controllers\VehicleServiceAndMore::class, 'editVehicle'])->name('edit-vehicle')->middleware('auth');
+Route::any('/add-service/{id}', [App\Http\Controllers\VehicleServiceAndMore::class, 'addService'])->name('add-service')->middleware('auth');
 
 Auth::routes();
 

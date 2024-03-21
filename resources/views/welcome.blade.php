@@ -1,13 +1,15 @@
 @extends('layouts.app')
-
 @section('content')
 {{-- to if apo kato einai kapos anoysio afoy pernaei prota apo to middleware(Auth) --}}
+  
+
+
 <div class='main-welcome'>
     <div class='welcome-75-div'>
         <h4><strong>Your vehicle data:</strong></h4>
         @if($vehicles->count() > 0)
             <table class="table table-striped">
-            <th>Brand</th><th>Model</th><th>Plate-Number</th><th>Km</th><th>Color</th><th>Vehicle Type</th><th>Gas Type</th><th>Delete</th><th>Edit</th>
+            <th>Brand</th><th>Model</th><th>Plate-Number</th><th>Km</th><th>Color</th><th>Vehicle Type</th><th>Gas Type</th><th style="text-align: center">Delete</th><th style="text-align: center">Edit</th><th style="text-align: center">New service</th>
             @foreach($vehicles as $v)
             <tr>
                 <td onclick="window.location='{{ route('vehicle-more', ['id' => $v->id]) }}';" style="cursor:pointer;">
@@ -51,15 +53,44 @@
                 <td onclick="window.location='{{ route('vehicle-more', ['id' => $v->id]) }}';" style="cursor:pointer;">
                     {{$v->gas_type ? $v->gas_type->name : '-'}}
                 </td>
-                <td>
-                    <a href="{{route('delete-vehicle',['id' => $v->id])}}"><button type="button" class="btn-close" aria-label="Close"></button> </a>
-                </td>
-                <td>
-                    <a href="{{route('edit-vehicle',['id' => $v->id])}}"><img src="{{ asset('images/icons/pen.png') }}" alt="Edit"></a>
-                </td>
+                <td style="text-align: center">
+                    {{-- <a href="{{route('delete-vehicle',['id' => $v->id])}}"><button type="button" class="btn-close" aria-label="Close"></button> </a> --}}
+<!-- Button to trigger the modal -->
+                    <button type="button" class="btn-close delete-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="{{$v->id}}" data-brand="{{$v->brand}}" arial-lebel="Close">   
+                    </button>               
+                 </td>
+                 <td style="text-align: center">
+                     <a href="{{route('edit-vehicle',['id' => $v->id])}}"><img src="{{ asset('images/icons/pen.png') }}" alt="Edit"></a>
+                 </td>
+                 <td style="text-align: center">
+                     <a href="{{route('add-service',['id' => $v->id])}}"><strong><img src="{{ asset('images/icons/calendar2-plus.svg') }}" alt="add-service"></strong></i></a>
+                 </td>
             </tr>
             @endforeach
             </table>
+
+
+        {{-- na ftiakso to delete modal na diagrafei otan patao to yes  --}}
+        
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var deleteButtons = document.querySelectorAll('.delete-btn');
+                    var itemIdElement = document.getElementById('itemId');
+                    var itemBrandElement = document.getElementById('itemBrand');
+            
+                    deleteButtons.forEach(function(button) {
+                        button.addEventListener('click', function() {
+                            var itemId = button.getAttribute('data-id');
+                            var itemBrand = button.getAttribute('data-brand');
+                            
+                            // itemIdElement.textContent = itemId;
+                            itemBrandElement.textContent = itemBrand;
+                        });
+                    });
+                });
+            </script>
+
+
         @else
             <p>There is no vehicle data inserted</p>
         @endif
@@ -143,3 +174,5 @@
     </div>
 </div>
 @endsection
+
+@include('templates.delete-modal')

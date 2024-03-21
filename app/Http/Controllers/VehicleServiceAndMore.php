@@ -119,4 +119,7 @@ class VehicleServiceAndMore extends Controller
         }
         return false;
     }
+    public function addService($id,Request $request) {  
+        //TODO: na ftiakso to blade kai na syexeiso tin kataxorisi toy service
+    }
 }
