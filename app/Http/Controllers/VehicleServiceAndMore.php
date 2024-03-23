@@ -119,7 +119,14 @@ class VehicleServiceAndMore extends Controller
         }
         return false;
     }
-    public function addService($id,Request $request) {  
-        //TODO: na ftiakso to blade kai na syexeiso tin kataxorisi toy service
+    public function addService($id,Request $request) { 
+        $Uid = Auth::id();
+        $gas_t = Gas_type::all();
+        $vehicles = Vehicle::where('user_id',$Uid)->find($id);
+        // dd($vehicles);
+        if($vehicles == null) 
+            return Redirect::route('index')->withErrors('Error, no data to illustrate.');
+        return view('add-service', compact('vehicles'));
+        //TODO: na synexiso tin diadikasia gia to add service
     }
 }
