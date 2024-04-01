@@ -56,8 +56,9 @@
                 <td style="text-align: center">
                     {{-- <a href="{{route('delete-vehicle',['id' => $v->id])}}"><button type="button" class="btn-close" aria-label="Close"></button> </a> --}}
 <!-- Button to trigger the modal -->
-                    <button type="button" class="btn-close delete-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="{{$v->id}}" data-brand="{{$v->brand}}" arial-lebel="Close">   
-                    </button>               
+                    @if ($v!=null)
+                        <button type="button" class="btn-close delete-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="{{$v->id}}" data-brand="{{$v->brand}}" arial-lebel="Close">   </button>               
+                    @endif
                  </td>
                  <td style="text-align: center">
                      <a href="{{route('edit-vehicle',['id' => $v->id])}}"><img src="{{ asset('images/icons/pen.png') }}" alt="Edit"></a>

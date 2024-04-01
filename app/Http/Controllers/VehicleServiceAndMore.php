@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Vehicle;
 use App\Models\Gas_type;
+use App\Models\service_procedure;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -123,10 +124,11 @@ class VehicleServiceAndMore extends Controller
         $Uid = Auth::id();
         $gas_t = Gas_type::all();
         $vehicles = Vehicle::where('user_id',$Uid)->find($id);
+        $service_proc = service_procedure::all()->toArray();
         // dd($vehicles);
         if($vehicles == null) 
             return Redirect::route('index')->withErrors('Error, no data to illustrate.');
-        return view('add-service', compact('vehicles'));
+        return view('add-service', compact('vehicles'), compact('service_proc'));
         //TODO: na synexiso tin diadikasia gia to add service
     }
 }
