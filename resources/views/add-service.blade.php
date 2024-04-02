@@ -23,52 +23,49 @@
         <h4><strong>Add a new service here:</strong></h4>
         <form method="post" action="">
             @csrf
-            <h2>Select a Service Procedure:</h2>
-            <select id="serviceProcedureSelect">
-                <option value="">Select a Service Procedure</option>
-            </select>
-
             <script>
-                // Embedding the PHP array into a JavaScript variable
-                // const serviceProcOptions = @json($service_proc);
-
-                // // Reference to the select element
-                // const selectElement = document.getElementById('serviceProcedureSelect');
-
-                // // Loop through the array and add options to the select element
-                // serviceProcOptions.forEach(function(item) {
-                //     const option = document.createElement('option');
-                //     option.value = item.id; // Assuming 'id' is the key for the value
-                //     option.text = item.name; // Assuming 'name' is the key for the name
-                //     selectElement.appendChild(option);
-                // });
-
-
-
-
-
                 
-                document.addEventListener('DOMContentLoaded', function() {  //TODO: prospatho na emfaniso tis times poy stelno apo to service_procedure db me js se dynamiko montelo dimioyrgontas kathe fora kainoyrio me to add item button
-    // Embedding the PHP array into a JavaScript variable
-    const serviceProcOptionsElement = @json($service_proc);
-    console.log(serviceProcOptionsElement);
-    if (serviceProcOptionsElement) {
-        const serviceProcOptions = JSON.parse(serviceProcOptionsElement.textContent);
+                    document.addEventListener('DOMContentLoaded', function() {  //TODO: prospatho na emfaniso tis times poy stelno apo to service_procedure db me js se dynamiko montelo dimioyrgontas kathe fora kainoyrio me to add item button
+                    // Embedding the PHP array into a JavaScript variable
+                    const serviceProcOptionsElement = @json($service_proc);
+                    const addItemButton = document.getElementById('add-item');
+                    const itemsContainer = document.getElementById('items');
+                    const serviceProcOptions = {!! json_encode($service_proc) !!};
 
-        // Reference to the select element
-        const selectElement = document.getElementById('serviceProcedureSelect');
+                    addItemButton.addEventListener('click', function() {
+                        const newItem = document.createElement('div');
+                        newItem.classList.add('item');
+                        newItem.innerHTML = `
+                            <h5>Add the procedure</h5>
+                            <select name="service_procedure[]">
+                                ${serviceProcOptions.map(sp => `<option value="${sp.id}">${sp.name} - ${sp.status}</option>`).join('')}
+                            </select>
+                            <h5>Add a description</h5>
+                            <input type="text" name="description[]" placeholder="Description">
+                            <button type="button" class="remove-item">Remove</button>
+                        `;
+                        itemsContainer.appendChild(newItem);
+                    });
 
-        // Loop through the array and add options to the select element
-        serviceProcOptions.forEach(function(item) {
-            const option = document.createElement('option');
-            option.value = item.id; // Assuming 'id' is the key for the value
-            option.text = item.name; // Assuming 'name' is the key for the name
-            selectElement.appendChild(option);
-        });
-    } else {
-        console.error('Service procedure data element not found.');
-    }
-});
+                    itemsContainer.addEventListener('click', function(event) {
+                        if (event.target.classList.contains('remove-item')) {
+                            event.target.closest('.item').remove();
+                        }
+                    });
+                    // if (serviceProcOptionsElement) {
+                        
+                    //     const selectElement = document.getElementById('serviceProcedureSelect');
+
+                    //     serviceProcOptionsElement.forEach(function(item) {
+                    //         const option = document.createElement('option');
+                    //         option.value = item.id; // Assuming 'id' is the key for the value
+                    //         option.text = item.name; // Assuming 'name' is the key for the name
+                    //         selectElement.appendChild(option);
+                    //     });
+                    // } else {
+                    //     console.error('Service procedure data element not found.');
+                    // }
+                });
             </script>
             <br><br><br>
             <div id="items">
@@ -83,9 +80,9 @@
                 <h5>Add a description</h5>
                 <input type="text" name="description[]" placeholder="Description">
             </div>
-            <button type="button" id="add-item" class="btn btn-primary">Add Item</button>
-            <br>
-            <input class="btn btn-primary" type="submit" value="Submit">
+            <button type="button" id="add-item" class="btn btn-primary" style="margin-top: 5px">Add a new procedure</button>
+            
+            <input class="btn btn-primary" type="submit" value="Submit" style="margin-top: 5px">
         </form>
     </div>
 </div>

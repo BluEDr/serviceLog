@@ -126,9 +126,12 @@ class VehicleServiceAndMore extends Controller
         $vehicles = Vehicle::where('user_id',$Uid)->find($id);
         $service_proc = service_procedure::all()->toArray();
         // dd($vehicles);
+        if($request->input('service_procedure')!=null) {
+            dd($request->input('service_procedure')[2]);
+        }
         if($vehicles == null) 
             return Redirect::route('index')->withErrors('Error, no data to illustrate.');
         return view('add-service', compact('vehicles'), compact('service_proc'));
-        //TODO: na synexiso tin diadikasia gia to add service
+        //TODO: na synexiso me tis prosthikes apo ton controller sto junction table
     }
 }
