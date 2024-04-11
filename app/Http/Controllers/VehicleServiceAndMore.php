@@ -126,12 +126,36 @@ class VehicleServiceAndMore extends Controller
         $vehicles = Vehicle::where('user_id',$Uid)->find($id);
         $service_proc = service_procedure::all()->toArray();
         // dd($vehicles);
-        if($request->input('service_procedure')!=null) {
-            dd($request->input('service_procedure')[2]);
+        if($request->isMethod('post')) {
+            $validatedData = $request->validate([
+                'km' => 'required|integer|min:1',
+            ],
+        [
+            'km.required' => 'The km field is required. Try it again.'
+        ]);
+            if($request->input('km')===null)
+                return redirect()->back()->withInput()->with('error', 'Error: km field cannot be null');
+        }
+        if(($request->input('service_procedure')!=null) && ($request->input('km')!=null)) {
+            $val = $service_proc[$this->checkForSameItemsInAnArray($request->input('service_procedure'))];
+
+            // Count occurrences of each value in the array
+            $valueCounts = array_count_values($request->input('service_procedure'));
+
+            // Check if any value occurs more than once
+            $duplicates = array_filter($valueCounts, function ($count) {
+                return $count > 1;
+            });
+            if (count($duplicates) > 0) {  // there is dublicate values
+                return redirect()->back()->withInput()->withErrors('Error: you added more than one time the same service procedure.');
+            } 
         }
         if($vehicles == null) 
             return Redirect::route('index')->withErrors('Error, no data to illustrate.');
         return view('add-service', compact('vehicles'), compact('service_proc'));
         //TODO: na synexiso me tis prosthikes apo ton controller sto junction table
+    }
+    public function checkForSameItemsInAnArray($a) {
+        return($a[0]);
     }
 }
