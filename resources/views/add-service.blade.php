@@ -10,12 +10,19 @@
         <h4><strong>Your vehicle data:</strong></h4>
         @if(isset($junction))
             <table class="table table-striped">
+                <tr>
+                    <th>Vehicle</th>
+                    <th>km</th>
+                    <th>Service procedure</th>
+                    <th>Status</th>
+
+                </tr>
             @foreach ($junction as $j)
                 <tr>
                     <td> {{$j->vehicle->brand}} {{$j->vehicle->model}} </td>
+                    <td> {{$j->km_service}} </td>
                     <td> {{$j->service_procedure->name}}</td>
                     <td> {{$j->service_procedure->status}}</td>
-                    <td> {{$j->km_service}} </td>
                 </tr>
             @endforeach
             </table>
