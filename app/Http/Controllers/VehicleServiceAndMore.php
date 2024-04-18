@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Vehicle;
 use App\Models\Gas_type;
 use App\Models\service_procedure;
+use App\Models\junction_service_proc_vehicle;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -124,8 +125,10 @@ class VehicleServiceAndMore extends Controller
         $Uid = Auth::id();
         $gas_t = Gas_type::all();
         $vehicles = Vehicle::where('user_id',$Uid)->find($id);
-        $service_proc = service_procedure::all()->toArray();
-        // dd($vehicles);
+        $service_proc = service_procedure::all()->toArray();   
+        $vid = $vehicles->id;
+        $junction = junction_service_proc_vehicle::where('vehicle_id',$vid)->get();
+        // dd($junction);
         if($request->isMethod('post')) {
             $validatedData = $request->validate([
                 'km' => 'required|integer|min:1',
@@ -135,6 +138,20 @@ class VehicleServiceAndMore extends Controller
         ]);
             if($request->input('km')===null)
                 return redirect()->back()->withInput()->with('error', 'Error: km field cannot be null');
+            else { //In this else starting to insert in db
+                // dd(count($request->input('description')));
+                $descriptions = $request->input('description');
+                $service_procedure = $request->input('service_procedure');
+                foreach ($service_procedure as $key => $sp) {
+                    $jt = new junction_service_proc_vehicle();
+                    $jt->vehicle_id = $vid;
+                    $jt->service_procedure_id = $sp;
+                    $jt->km_service = $request->input('km');
+                    if($descriptions[$key] !== null)
+                        $jt->more_details = $descriptions[$key];
+                    $jt->save();
+                }
+            }
         }
         if(($request->input('service_procedure')!=null) && ($request->input('km')!=null)) {
             $val = $service_proc[$this->checkForSameItemsInAnArray($request->input('service_procedure'))];
@@ -152,8 +169,8 @@ class VehicleServiceAndMore extends Controller
         }
         if($vehicles == null) 
             return Redirect::route('index')->withErrors('Error, no data to illustrate.');
-        return view('add-service', compact('vehicles'), compact('service_proc'));
-        //TODO: na synexiso me tis prosthikes apo ton controller sto junction table
+        $junction = junction_service_proc_vehicle::where('vehicle_id',$vid)->get();
+        return view('add-service', compact('vehicles','junction','service_proc'));
     }
     public function checkForSameItemsInAnArray($a) {
         return($a[0]);

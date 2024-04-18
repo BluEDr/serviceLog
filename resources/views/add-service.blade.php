@@ -8,7 +8,18 @@
 <div class='main-welcome'>
     <div class='welcome-75-div'>
         <h4><strong>Your vehicle data:</strong></h4>
-        
+        @if(isset($junction))
+            <table>
+            @foreach ($junction as $j)
+                <tr>
+                    <td> {{$j->vehicle_id}} </td>
+                    <td> {{$j->service_procedure_id}}</td>
+                    <td> {{$j->km_service}} </td>
+                </tr>
+            @endforeach
+            </table>
+
+        @endif
     </div>
     <div class='welcome-25-div'>
         @if ($errors->any())
