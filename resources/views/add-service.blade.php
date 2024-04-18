@@ -9,11 +9,12 @@
     <div class='welcome-75-div'>
         <h4><strong>Your vehicle data:</strong></h4>
         @if(isset($junction))
-            <table>
+            <table class="table table-striped">
             @foreach ($junction as $j)
                 <tr>
-                    <td> {{$j->vehicle_id}} </td>
-                    <td> {{$j->service_procedure_id}}</td>
+                    <td> {{$j->vehicle->brand}} {{$j->vehicle->model}} </td>
+                    <td> {{$j->service_procedure->name}}</td>
+                    <td> {{$j->service_procedure->status}}</td>
                     <td> {{$j->km_service}} </td>
                 </tr>
             @endforeach
