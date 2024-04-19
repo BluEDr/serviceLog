@@ -150,6 +150,7 @@ class VehicleServiceAndMore extends Controller
                     $jt->km_service = $request->input('km');
                     if($request->input('kmNextService')!=='-')
                         $jt->km_for_next_service = $request->input('km') + $nextServ;
+                    //TODO: na epeksergasto toys mines poy erxonte apo tin forma 
                     if($descriptions[$key] !== null)
                         $jt->more_details = $descriptions[$key];
                     $jt->save();
