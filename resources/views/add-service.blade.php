@@ -72,19 +72,6 @@
                             event.target.closest('.item').remove();
                         }
                     });
-                    // if (serviceProcOptionsElement) {
-                        
-                    //     const selectElement = document.getElementById('serviceProcedureSelect');
-
-                    //     serviceProcOptionsElement.forEach(function(item) {
-                    //         const option = document.createElement('option');
-                    //         option.value = item.id; // Assuming 'id' is the key for the value
-                    //         option.text = item.name; // Assuming 'name' is the key for the name
-                    //         selectElement.appendChild(option);
-                    //     });
-                    // } else {
-                    //     console.error('Service procedure data element not found.');
-                    // }
                 });
             </script>
             <br><br><br>
