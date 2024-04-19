@@ -76,7 +76,10 @@
             </script>
             <br><br><br>
             <div id="items">
-                <h5>Km</h5>
+                <h5>Km<span style="color: red">*</span></h5>
+                <input type="text" name="km" id="km" placeholder="Service km">
+                <h5>Km for the next service</h5>
+                {{-- TODO: na ftiakso apo kato se posa xiliometra to epomeno service, me dropdown? i me input text. --}}
                 <input type="text" name="km" id="km" placeholder="Service km">
                 <h5>Add the procedure</h5>
                 <select name="service_procedure[]">
