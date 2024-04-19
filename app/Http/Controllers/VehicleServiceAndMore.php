@@ -142,11 +142,14 @@ class VehicleServiceAndMore extends Controller
                 // dd(count($request->input('description')));
                 $descriptions = $request->input('description');
                 $service_procedure = $request->input('service_procedure');
+                $nextServ = $request->input('kmNextService');
                 foreach ($service_procedure as $key => $sp) {
                     $jt = new junction_service_proc_vehicle();
                     $jt->vehicle_id = $vid;
                     $jt->service_procedure_id = $sp;
                     $jt->km_service = $request->input('km');
+                    if($request->input('kmNextService')!=='-')
+                        $jt->km_for_next_service = $request->input('km') + $nextServ;
                     if($descriptions[$key] !== null)
                         $jt->more_details = $descriptions[$key];
                     $jt->save();
@@ -169,7 +172,7 @@ class VehicleServiceAndMore extends Controller
         }
         if($vehicles == null) 
             return Redirect::route('index')->withErrors('Error, no data to illustrate.');
-        $junction = junction_service_proc_vehicle::where('vehicle_id',$vid)->get();
+        $junction = junction_service_proc_vehicle::where('vehicle_id',$vid)->orderBy('created_at','desc')->get();
         return view('add-service', compact('vehicles','junction','service_proc'));
     }
     public function checkForSameItemsInAnArray($a) {

@@ -7,7 +7,6 @@
 
 <div class='main-welcome'>
     <div class='welcome-75-div'>
-        <h4><strong>Your vehicle data:</strong></h4>
         @if(isset($junction))
             <table class="table table-striped">
                 <tr>
@@ -15,7 +14,8 @@
                     <th>km</th>
                     <th>Service procedure</th>
                     <th>Status</th>
-
+                    <th>Next Service</th>
+                    <th>Description</th>
                 </tr>
             @foreach ($junction as $j)
                 <tr>
@@ -23,6 +23,8 @@
                     <td> {{$j->km_service}} </td>
                     <td> {{$j->service_procedure->name}}</td>
                     <td> {{$j->service_procedure->status}}</td>
+                    <td> {{$j->km_for_next_service}}</td>
+                    <td> {{$j->more_details}}</td>
                 </tr>
             @endforeach
             </table>
@@ -79,8 +81,51 @@
                 <h5>Km<span style="color: red">*</span></h5>
                 <input type="text" name="km" id="km" placeholder="Service km">
                 <h5>Km for the next service</h5>
-                {{-- TODO: na ftiakso apo kato se posa xiliometra to epomeno service, me dropdown? i me input text. --}}
-                <input type="text" name="km" id="km" placeholder="Service km">
+                <select name="kmNextService" id="kmNextService">
+                    <option value="-" selected>-</option>
+                    <option value="500">500</option>
+                    <option value="1000">1,000</option>
+                    <option value="2000">2,000</option>
+                    <option value="3000">3,000</option>
+                    <option value="5000">5,000</option>
+                    <option value="7500">7,500</option>
+                    <option value="10000">10,000</option>
+                    <option value="15000">15,000</option>
+                    <option value="20000">20,000</option>
+                    <option value="25000">25,000</option>
+                    <option value="30000">30,000</option>
+                    <option value="35000">35,000</option>
+                    <option value="40000">40,000</option>
+                    <option value="45000">45,000</option>
+                    <option value="50000">50,000</option>
+                    <option value="55000">55,000</option>
+                    <option value="60000">60,000</option>
+                    <option value="65000">65,000</option>
+                    <option value="70000">70,000</option>
+                    <option value="75000">75,000</option>
+                    <option value="80000">80,000</option>
+                    <option value="85000">85,000</option>
+                    <option value="90000">90,000</option>
+                    <option value="95000">95,000</option>
+                    <option value="100000">100,000</option>
+                </select>                
+                <h5>Months for the next service</h5>
+                <select name="monthsNextService" id="monthsNextService">
+                    <option value="-">-</option>
+                    <option value="3">3 months</option>
+                    <option value="6">6 months</option>
+                    <option value="9">9 months</option>
+                    <option value="12" selected>12 months (1 year)</option>
+                    <option value="15">15 months</option>
+                    <option value="18">18 months</option>
+                    <option value="21">21 months</option>
+                    <option value="24">24 months (2 years)</option>
+                    <option value="27">27 months</option>
+                    <option value="30">30 months</option>
+                    <option value="33">33 months</option>
+                    <option value="36">36 months (3 years)</option>
+
+                </select>                
                 <h5>Add the procedure</h5>
                 <select name="service_procedure[]">
                     @foreach($service_proc as $sp)
