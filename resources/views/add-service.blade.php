@@ -46,8 +46,8 @@
         <form method="post" action="">
             @csrf
             <script>
-                
-                    document.addEventListener('DOMContentLoaded', function() {  //TODO: prospatho na emfaniso tis times poy stelno apo to service_procedure db me js se dynamiko montelo dimioyrgontas kathe fora kainoyrio me to add item button
+                //FIXME: opoio aytokinito kai na epilekso gia diagrafei, moy diagrafei panta to teleytaio tis lisitans
+                    document.addEventListener('DOMContentLoaded', function() { 
                     // Embedding the PHP array into a JavaScript variable
                     const serviceProcOptionsElement = @json($service_proc);
                     const addItemButton = document.getElementById('add-item');

@@ -9,7 +9,7 @@
         <h4><strong>Your vehicle data:</strong></h4>
         @if($vehicles->count() > 0)
             <table class="table table-striped">
-            <th>Brand</th><th>Model</th><th>Plate-Number</th><th>Km</th><th>Color</th><th>Vehicle Type</th><th>Gas Type</th><th style="text-align: center">Delete</th><th style="text-align: center">Edit</th><th style="text-align: center">New service</th>
+            <th>Brand</th><th>Model</th><th>Plate-Number</th><th>Km</th><th>Color</th><th>Vehicle Type</th><th>Gas Type</th><th style="text-align: center">Delete</th><th style="text-align: center">Edit</th><th style="text-align: center">New service</th><th style="text-align: center">Fuel consumption</th>
             @foreach($vehicles as $v)
             <tr>
                 <td onclick="window.location='{{ route('vehicle-more', ['id' => $v->id]) }}';" style="cursor:pointer;">
@@ -66,6 +66,10 @@
                  <td style="text-align: center">
                      <a href="{{route('add-service',['id' => $v->id])}}"><strong><img src="{{ asset('images/icons/calendar2-plus.svg') }}" alt="add-service"></strong></i></a>
                  </td>
+                 <td style="text-align: center">
+                     <a href="{{route('fuel-consumption',['id' => $v->id])}}"><strong><img src="{{ asset('images/icons/gas.png') }}" alt="fuel consumption"></strong></i></a>
+                 </td>
+                 {{-- TODO: edo apo pano na allakso to route --}}
             </tr>
             @endforeach
             </table>
@@ -81,10 +85,12 @@
             
                     deleteButtons.forEach(function(button) {
                         button.addEventListener('click', function() {
+                            var modalData = button.getAttribute('data-id');
                             var itemId = button.getAttribute('data-id');
                             var itemBrand = button.getAttribute('data-brand');
                             
                             // itemIdElement.textContent = itemId;
+                            // itemBrandElement.textContent = itemBrand;
                             itemBrandElement.textContent = itemBrand;
                         });
                     });

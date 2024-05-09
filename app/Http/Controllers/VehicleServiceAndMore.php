@@ -122,6 +122,7 @@ class VehicleServiceAndMore extends Controller
         return false;
     }
     public function addService($id,Request $request) { 
+        //FIXME:tin proti kataxorisi poy ekana gia to c50 moy ebgale sfalma oti exo balei dyo fores tin timi oil parolayta ekane tin kataxorisi. Den thimamai an eixa balei taytoxrona ontos 2 oil prin to submit
         $Uid = Auth::id();
         $gas_t = Gas_type::all();
         $vehicles = Vehicle::where('user_id',$Uid)->find($id);

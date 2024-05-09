@@ -20,7 +20,8 @@ Route::any('/delete-vehicle/{id}', [App\Http\Controllers\HomeService::class, 'de
 Route::get('/vehicle-more/{id}', [App\Http\Controllers\VehicleServiceAndMore::class, 'vehicleMore'])->name('vehicle-more')->middleware('auth');
 Route::any('/edit-vehicle/{id}', [App\Http\Controllers\VehicleServiceAndMore::class, 'editVehicle'])->name('edit-vehicle')->middleware('auth');
 Route::any('/add-service/{id}', [App\Http\Controllers\VehicleServiceAndMore::class, 'addService'])->name('add-service')->middleware('auth');
-
+Route::any('/fuel-consumption/{id}', [App\Http\Controllers\ManageFuel::class, 'fuel_consumption'])->name('fuel-consumption')->middleware('auth');
+//TODO: na ftiakso edo to fuel-consumption call
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
