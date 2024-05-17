@@ -30,7 +30,9 @@
             </div>
         @endif
         <h4><strong>Add a new refueling here:</strong></h4>
-        <form method="post" action="">
+        <p style="color: red" id="errorMsg1"></p>
+        <p style="color: red" id="errorMsg2"></p>
+        <form method="post" name="myForm" onsubmit="validateFuelConsumptionForm(event)" action="" >
             @csrf
             <div id="items">
                 <h5>Km<span style="color: red">*</span></h5>
@@ -41,8 +43,16 @@
                 <h5>Description</h5>
                 <input type="text" id="description" placeholder="Write your description.">
                 <br>
+                <h5>Do you want to start a new fuel consumption calculation? The fuel tank has to be full.</h5>
+                <div>
+                    <input type="radio" id="startNewCalculationYes" name="startNewCalculation" value="yes">
+                    <label for="startNewCalculationYes">Yes</label>
+                    <input type="radio" id="startNewCalculationNo" name="startNewCalculation" value="no" checked>
+                    <label for="startNewCalculationNo">No</label>
+                </div>
+                <br>
                 <h5>Do you full your tank?</h5>
-                <input type="radio" id="isFullTrue" name="isFull">
+                <input type="radio" id="isFullTrue" name="isFull" >
                 <label for="isFullTrue">Yes</label>
                 <input type="radio" id="isFullFalse" name="isFull" checked>
                 <label for="isFullFalse">No</label>

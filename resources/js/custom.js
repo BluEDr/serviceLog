@@ -1,0 +1,53 @@
+window.validateFuelConsumptionForm = function (event) {
+    event.preventDefault();
+    console.log("innnn");
+    let km = parseInt(document.forms["myForm"]["km"].value);
+    let fuelAmount = parseFloat(document.forms["myForm"]["fuelAmound"].value);
+    let error = 0;
+    console.log(km);
+    if (isNaN(km) || !Number.isInteger(km) || km < 0) {
+        document.getElementById("errorMsg1").innerHTML =
+            "The km field is essential, please try again.";
+        error++;
+    } else {
+        document.getElementById("errorMsg1").innerHTML = "";
+    }
+    if (
+        isNaN(fuelAmount) ||
+        (!Number.isInteger(fuelAmount) && fuelAmount < 0)
+    ) {
+        document.getElementById("errorMsg2").innerHTML =
+            "The fuel amount field is essential, please try again.";
+        error++;
+    } else {
+        document.getElementById("errorMsg2").innerHTML = "";
+    }
+    if (error === 0) document.forms["myForm"].submit();
+    else return false;
+};
+
+document.getElementById("startNewCalculationYes").addEventListener("change", function () {
+        if (this.checked) {
+            let radioTrue = (document.getElementById(
+                "isFullTrue"
+            ).checked = true);
+            let radioFalse = (document.getElementById(
+                "isFullFalse"
+            ).checked = false);
+            radioTrue = document.getElementById("isFullTrue").disabled = true;
+            radioFalse = document.getElementById("isFullFalse").disabled = true;
+        }
+    });
+
+document
+    .getElementById("startNewCalculationNo")
+    .addEventListener("change", function () {
+        if (this.checked) {
+            let radioTrue = (document.getElementById(
+                "isFullTrue"
+            ).disabled = false);
+            let radioFalse = (document.getElementById(
+                "isFullFalse"
+            ).disabled = false);
+        }
+    });
