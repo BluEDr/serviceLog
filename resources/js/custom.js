@@ -1,4 +1,4 @@
-window.validateFuelConsumptionForm = function (event) {
+window.validateFuelConsumptionForm = function (event) { //validation for a radio button checked in the fuel-consumption.blade
     event.preventDefault();
     console.log("innnn");
     let km = parseInt(document.forms["myForm"]["km"].value);
@@ -26,7 +26,7 @@ window.validateFuelConsumptionForm = function (event) {
     else return false;
 };
 
-document.getElementById("startNewCalculationYes").addEventListener("change", function () {
+document.getElementById("startNewCalculationYes").addEventListener("change", function () { //validation for a radio button checked in the fuel-consumption.blade
         if (this.checked) {
             let radioTrue = (document.getElementById(
                 "isFullTrue"
@@ -39,15 +39,13 @@ document.getElementById("startNewCalculationYes").addEventListener("change", fun
         }
     });
 
-document
-    .getElementById("startNewCalculationNo")
-    .addEventListener("change", function () {
-        if (this.checked) {
-            let radioTrue = (document.getElementById(
-                "isFullTrue"
-            ).disabled = false);
-            let radioFalse = (document.getElementById(
-                "isFullFalse"
-            ).disabled = false);
-        }
-    });
+document.getElementById("startNewCalculationNo").addEventListener("change", function () { //validation for a radio button checked in the fuel-consumption.blade
+    if (this.checked) {
+        let radioTrue = (document.getElementById(
+            "isFullTrue"
+        ).disabled = false);
+        let radioFalse = (document.getElementById(
+            "isFullFalse"
+        ).disabled = false);
+    }
+});
