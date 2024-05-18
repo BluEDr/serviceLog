@@ -17,13 +17,24 @@ class ManageFuel extends Controller
         $vehicles = Vehicle::with('user','gas_type')->where('user_id',$Uid)->find($id);
         if($vehicles == null)
             return Redirect::route('index')->withErrors('Error, no data to illustrate.');
-        if($request->isMethod('POST')) { //TODO: na ftiakso edo tin kataxorisi toy gas
-            $gas = new Gas();
-            $gas->vehicle_id = $vehicles->id;
-            $gas->km = 11112;
-            $gas->lt = 1112;
-            $gas->save();
+        if($request->isMethod('POST')) { 
+            $isFull = ($request->input('isFull') === "True") ? 1 : 0;
+            if ($request->input('startNewCalculation') === "True") {
+                $isStartOfCalc = 1;
+                $isFull = 1;    //Ayto giati an to isStartOfCalculating einai true tote anagkastika kai to isFull prepei na einai true
+            } else {
+                $isStartOfCalc = 0;
+            }
+            print($isFull);
+            $gas = Gas::Create([
+                'vehicle_id' => $vehicles->id,
+                'km' => $request->input('km'),
+                'lt' => $request->input('fuelAmound'),
+                'isFull' => $isFull,
+                'isStartOfCalculating' => $isStartOfCalc
+            ]);
         }
-        return view('fuel-consumption',compact('vehicles'));
+        $gas = Gas::where('vehicle_id',$vehicles->id)->orderBy('created_at','desc')->get();
+        return view('fuel-consumption',compact('vehicles','gas'));
     }
 }

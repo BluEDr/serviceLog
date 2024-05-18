@@ -12,6 +12,15 @@ window.validateFuelConsumptionForm = function (event) { //validation for a radio
     } else {
         document.getElementById("errorMsg1").innerHTML = "";
     }
+    const integerPattern = /^\d{1,8}$/;
+    const floatPattern = /^\d{1,8}\.\d{1,3}$/;
+
+    if (integerPattern.test(fuelAmount) || floatPattern.test(fuelAmount)) {
+        document.getElementById("errorMsg3").innerHTML = "";
+    } else {
+        error++;
+        document.getElementById("errorMsg3").innerHTML = "Invalid number in liters!";
+    }
     if (
         isNaN(fuelAmount) ||
         (!Number.isInteger(fuelAmount) && fuelAmount < 0)

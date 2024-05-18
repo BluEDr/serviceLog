@@ -9,12 +9,19 @@
     <div class='welcome-75-div'>
             <table class="table table-striped">
                 <tr>
-                    <th>???---???</th>
+                    <th>km</th>
+                    <th>lt</th>
+                    <th>isFull</th>
+                    <th>isStartOfCalculating</th>
                 </tr>
-                <tr>
-                    <td> ??? </td>
-                    
-                </tr>
+                    @foreach($gas as $collection)
+                        <tr>
+                            <td> {{$collection->km}} </td>
+                            <td> {{$collection->lt}} </td>
+                            <td> {{($collection->isFull===1) ? "Yes" : "No"}} </td>
+                            <td> {{($collection->isStartOfCalculating===1) ? "Yes" : "No"}} </td>
+                        </tr>
+                    @endforeach 
             </table>
 
     </div>
@@ -32,31 +39,28 @@
         <h4><strong>Add a new refueling here:</strong></h4>
         <p style="color: red" id="errorMsg1"></p>
         <p style="color: red" id="errorMsg2"></p>
+        <p style="color: red" id="errorMsg3"></p>
         <form method="post" name="myForm" onsubmit="validateFuelConsumptionForm(event)" action="" >
             @csrf
             <div id="items">
+                <h5>Do you want to start a new fuel consumption calculation? The fuel tank has to be full.</h5>
+                <div>
+                    <input type="radio" id="startNewCalculationYes" name="startNewCalculation" value="True">
+                    <label for="startNewCalculationYes">Yes</label>
+                    <input type="radio" id="startNewCalculationNo" name="startNewCalculation" value="False" checked>
+                    <label for="startNewCalculationNo">No</label>
+                </div>
+                <h5>Do you full your tank?</h5>
+                <input type="radio" id="isFullTrue" name="isFull" value="True">
+                <label for="isFullTrue">Yes</label>
+                <input type="radio" id="isFullFalse" name="isFull" value="False" checked>
+                <label for="isFullFalse">No</label>
+                </div>
                 <h5>Km<span style="color: red">*</span></h5>
                 <input type="text" name="km" id="km" placeholder="Service km">
                 <h5>liters/kwh<span style="color: red">*</span></h5>
                 <input type="text" name="fuelAmound" id="fuelAmound" placeholder="fuel amound">
-                <br>
-                <h5>Description</h5>
-                <input type="text" id="description" placeholder="Write your description.">
-                <br>
-                <h5>Do you want to start a new fuel consumption calculation? The fuel tank has to be full.</h5>
-                <div>
-                    <input type="radio" id="startNewCalculationYes" name="startNewCalculation" value="yes">
-                    <label for="startNewCalculationYes">Yes</label>
-                    <input type="radio" id="startNewCalculationNo" name="startNewCalculation" value="no" checked>
-                    <label for="startNewCalculationNo">No</label>
-                </div>
-                <br>
-                <h5>Do you full your tank?</h5>
-                <input type="radio" id="isFullTrue" name="isFull" >
-                <label for="isFullTrue">Yes</label>
-                <input type="radio" id="isFullFalse" name="isFull" checked>
-                <label for="isFullFalse">No</label>
-            </div>            
+                <br>            
             <input class="btn btn-primary" type="submit" value="Submit" style="margin-top: 5px">
         </form>
     </div>
