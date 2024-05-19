@@ -25,7 +25,6 @@ class ManageFuel extends Controller
             } else {
                 $isStartOfCalc = 0;
             }
-            print($isFull);
             $gas = Gas::Create([
                 'vehicle_id' => $vehicles->id,
                 'km' => $request->input('km'),
@@ -36,5 +35,11 @@ class ManageFuel extends Controller
         }
         $gas = Gas::where('vehicle_id',$vehicles->id)->orderBy('created_at','desc')->get();
         return view('fuel-consumption',compact('vehicles','gas'));
+    }
+
+    public function del_fuel_consumption($id) {
+        $gas = Gas::where('id',$id);
+        $gas->delete();
+        return redirect()->back();
     }
 }

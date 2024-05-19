@@ -13,6 +13,7 @@
                     <th>lt</th>
                     <th>isFull</th>
                     <th>isStartOfCalculating</th>
+                    <th>delete</th>
                 </tr>
                     @foreach($gas as $collection)
                         <tr>
@@ -20,6 +21,7 @@
                             <td> {{$collection->lt}} </td>
                             <td> {{($collection->isFull===1) ? "Yes" : "No"}} </td>
                             <td> {{($collection->isStartOfCalculating===1) ? "Yes" : "No"}} </td>
+                            <td style="color: red"><a href="{{route('del-fuel-consumption',['id'=>$collection->id])}}"> del </a></td>
                         </tr>
                     @endforeach 
             </table>

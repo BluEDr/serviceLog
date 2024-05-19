@@ -21,6 +21,7 @@ Route::get('/vehicle-more/{id}', [App\Http\Controllers\VehicleServiceAndMore::cl
 Route::any('/edit-vehicle/{id}', [App\Http\Controllers\VehicleServiceAndMore::class, 'editVehicle'])->name('edit-vehicle')->middleware('auth');
 Route::any('/add-service/{id}', [App\Http\Controllers\VehicleServiceAndMore::class, 'addService'])->name('add-service')->middleware('auth');
 Route::any('/fuel-consumption/{id}', [App\Http\Controllers\ManageFuel::class, 'fuel_consumption'])->name('fuel-consumption')->middleware('auth');
+Route::any('/del-fuel/{id}', [App\Http\Controllers\ManageFuel::class, 'del_fuel_consumption'])->name('del-fuel-consumption')->middleware('auth');
 //TODO: na ftiakso edo to fuel-consumption call
 Auth::routes();
 
