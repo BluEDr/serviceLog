@@ -19,12 +19,25 @@
                         <tr>
                             <td> {{$collection->km}} </td>
                             <td> {{$collection->lt}} </td>
-                            <td> {{($collection->isFull===1) ? "Yes" : "No"}} </td>
+                            <td> 
+                                @if ($collection->isFull === 1) 
+                                    Yes <span class='badge badge-success'>Success</span>
+                                @else
+                                    No        
+                                @endif
+                            </td>
                             <td> {{($collection->isStartOfCalculating===1) ? "Yes" : "No"}} </td>
-                            <td style="color: red"><a href="{{route('del-fuel-consumption',['id'=>$collection->id])}}"> del </a></td>
+                            <td style="color:red"><a href="{{route('del-fuel-consumption',['id'=>$collection->id])}}">del</a></td>
                         </tr>
                     @endforeach 
             </table>
+            <br><br>
+            @if (isset($gas_2))
+                <p> {{$gas_2->km}} </p>
+                <p> {{$gas_2->isFull}} </p>
+            @else
+                <p>Problem </p>
+            @endif
 
     </div>
     <div class='welcome-25-div'>
@@ -62,7 +75,7 @@
                 <input type="text" name="km" id="km" placeholder="Service km">
                 <h5>liters/kwh<span style="color: red">*</span></h5>
                 <input type="text" name="fuelAmound" id="fuelAmound" placeholder="fuel amound">
-                <br>            
+                <br>
             <input class="btn btn-primary" type="submit" value="Submit" style="margin-top: 5px">
         </form>
     </div>

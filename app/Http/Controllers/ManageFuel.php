@@ -27,16 +27,43 @@ class ManageFuel extends Controller
             }
             $gas = Gas::Create([
                 'vehicle_id' => $vehicles->id,
-                'km' => $request->input('km'),
+                'km' => $request->input('km'), 
                 'lt' => $request->input('fuelAmound'),
                 'isFull' => $isFull,
                 'isStartOfCalculating' => $isStartOfCalc
             ]);
         }
         $gas = Gas::where('vehicle_id',$vehicles->id)->orderBy('created_at','desc')->get();
-        return view('fuel-consumption',compact('vehicles','gas'));
+        $gas_2 = Gas::where('vehicle_id',$vehicles->id)->where('isStartOfCalculating',1)->orderBy('km','desc')->first();
+        if(isset($gas_2)) {
+            $gas_3 = Gas::where('vehicle_id',$vehicles->id)->where('km','>',$gas_2->km)->orderBy('km','desc')->get();
+            if ($gas_3->count() === 0)
+                echo "No data yes!";
+            else 
+                echo $this->getLiters($gas_3) . "<----lts kms---->" . $this->getKms($gas_3,$gas_2) . " result---> " . ($this->getLiters($gas_3) * 100) / $this->getKms($gas_3,$gas_2);
+
+                // echo " " . ($this->getLiters($gas_3) * 100) / $this->getKms($gas_3,$gas_2);
+        } 
+        return view('fuel-consumption',compact('vehicles','gas','gas_2'));
     }
 
+    private function getKms($gas_3,$gas_2) {
+        $grater = 0;
+        foreach ($gas_3 as $collection) {
+            if($collection->km > $grater)
+                $grater=$collection->km;
+        }
+        return $grater - $gas_2->km;
+    }
+
+    private function getLiters($gas_3) {
+        $curr = 0;
+        foreach ($gas_3 as $collection) {
+            $curr+=$collection->lt;
+        }
+        return $curr;
+    }
+ 
     public function del_fuel_consumption($id) {
         $gas = Gas::where('id',$id);
         $gas->delete();
