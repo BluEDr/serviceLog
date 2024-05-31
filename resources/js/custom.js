@@ -1,3 +1,18 @@
+document.addEventListener('DOMContentLoaded',function(){
+    console.log('the custom.js loaded after DOM');
+    // dokimi();
+    // jsFuelConsumption(69);
+});
+
+function dokimi() {
+    console.log('dokimi');
+}
+function jsFuelConsumption(a) {
+    console.log("assssssssssssssssssssssssssssssssss" + a);
+    document.getElementById('fCunsumption').innerHTML = a;
+}
+
+console.log('custom.js loaded');
 window.validateFuelConsumptionForm = function (event) { //validation for a radio button checked in the fuel-consumption.blade
     event.preventDefault();
     console.log("innnn");
@@ -43,6 +58,7 @@ window.validateFuelConsumptionForm = function (event) { //validation for a radio
         return false;
 };
 
+
 document.getElementById("startNewCalculationYes").addEventListener("change", function () { //validation for a radio button checked in the fuel-consumption.blade
         if (this.checked) {
             let radioTrue = (document.getElementById(
@@ -66,3 +82,4 @@ document.getElementById("startNewCalculationNo").addEventListener("change", func
         ).disabled = false);
     }
 });
+

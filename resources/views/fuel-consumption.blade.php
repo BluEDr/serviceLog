@@ -1,9 +1,8 @@
 @extends('layouts.app')
 @section('content')
-{{-- to if apo kato einai kapos anoysio afoy pernaei prota apo to middleware(Auth) --}}
-  
-{{-- {{($vehicles->gas_type != null) ? $vehicles->gas_type->name : 'no gas added.'}} --}}
-<h1> Manage your service here from {{$vehicles->brand}}</h1>
+
+
+<h1> Fuel Consumption calculator for {{$vehicles->brand}} {{$vehicles->model}}: <span id="fCunsumption" style="color:red">-<span></h1>
 
 <div class='main-welcome'>
     <div class='welcome-75-div'>
@@ -36,7 +35,7 @@
                 <p> {{$gas_2->km}} </p>
                 <p> {{$gas_2->isFull}} </p>
             @else
-                <p>Problem </p>
+                <p>There is no imported data to illustrate. </p>
             @endif
 
     </div>
@@ -80,4 +79,16 @@
         </form>
     </div>
 </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        @if (session('fuelConsResult'))
+            document.getElementById('fCunsumption').innerHTML = Math.round(({{session('fuelConsResult')}} + Number.EPSILON) * 100)/100 + " lt/100km";
+        @endif
+    });
+</script>
+
+
+
 @endsection

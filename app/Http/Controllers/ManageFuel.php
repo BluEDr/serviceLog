@@ -35,14 +35,11 @@ class ManageFuel extends Controller
         }
         $gas = Gas::where('vehicle_id',$vehicles->id)->orderBy('created_at','desc')->get();
         $gas_2 = Gas::where('vehicle_id',$vehicles->id)->where('isStartOfCalculating',1)->orderBy('km','desc')->first();
+        $gas_4 = Gas::where('vehicle_id',$vehicles->id)->where('isFULL',1)->orderBy('km','desc')->first();
         if(isset($gas_2)) {
-            $gas_3 = Gas::where('vehicle_id',$vehicles->id)->where('km','>',$gas_2->km)->orderBy('km','desc')->get();
-            if ($gas_3->count() === 0)
-                echo "No data yes!";
-            else 
-                echo $this->getLiters($gas_3) . "<----lts kms---->" . $this->getKms($gas_3,$gas_2) . " result---> " . ($this->getLiters($gas_3) * 100) / $this->getKms($gas_3,$gas_2);
-
-                // echo " " . ($this->getLiters($gas_3) * 100) / $this->getKms($gas_3,$gas_2);
+            $gas_3 = Gas::where('vehicle_id',$vehicles->id)->where('km','>',$gas_2->km)->where('km','<=',$gas_4->km)->orderBy('km','desc')->get();
+            if ($gas_3->count() !== 0)
+                session()->flash('fuelConsResult', ($this->getLiters($gas_3) * 100) / $this->getKms($gas_3,$gas_2));
         } 
         return view('fuel-consumption',compact('vehicles','gas','gas_2'));
     }
