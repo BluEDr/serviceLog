@@ -2,7 +2,7 @@
 @section('content')
 
 
-<h1> Fuel Consumption calculator for {{$vehicles->brand}} {{$vehicles->model}}: <span id="fCunsumption" style="color:red">-<span></h1>
+<h1> Fuel Consumption calculator for {{$vehicles->brand}} {{$vehicles->model}}: <span id="fCunsumption" style="color:red; font-weight: bold">-<span></h1>
 
 <div class='main-welcome'>
     <div class='welcome-75-div'>
@@ -31,10 +31,7 @@
                     @endforeach 
             </table>
             <br><br>
-            @if (isset($gas_2))
-                <p> {{$gas_2->km}} </p>
-                <p> {{$gas_2->isFull}} </p>
-            @else
+            @if (!isset($gas_2))
                 <p>There is no imported data to illustrate. </p>
             @endif
 

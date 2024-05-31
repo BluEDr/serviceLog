@@ -3,7 +3,7 @@
 {{-- to if apo kato einai kapos anoysio afoy pernaei prota apo to middleware(Auth) --}}
   
 {{-- {{($vehicles->gas_type != null) ? $vehicles->gas_type->name : 'no gas added.'}} --}}
-<h1> Manage your service here from {{$vehicles->brand}}</h1>
+<h1> Manage your service here from {{$vehicles->brand}} {{$vehicles->model}}</h1>
 
 <div class='main-welcome'>
     <div class='welcome-75-div'>

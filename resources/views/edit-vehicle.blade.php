@@ -18,7 +18,7 @@
     @endif
 </div>
 <div class="centered-h1">
-    <h1>Edit your {{$vehicles->brand}} data.</h1>
+    <h1>Edit your {{$vehicles->brand}} {{$vehicles->model}} data.</h1>
 </div>
 <div class='main-welcome'>  
     <div class='edit-form'>
