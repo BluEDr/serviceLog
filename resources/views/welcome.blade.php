@@ -176,7 +176,7 @@
                 <input type="radio" name="vehicleType" id="truck" value="Truck">
                 <label for="truck">Truck</label>
             </div>
-            <input type="submit" value="Submit">
+            <input type="submit" class="btn btn-primary" value="Submit">
         </form>
     </div>
 </div>

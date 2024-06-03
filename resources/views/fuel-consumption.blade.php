@@ -48,6 +48,7 @@
                 </ul>
             </div>
         @endif
+        <h5><span class="badge bg-warning">Whow works?</span></h5>
         <h4><strong>Add a new refueling here:</strong></h4>
         <p style="color: red" id="errorMsg1"></p>
         <p style="color: red" id="errorMsg2"></p>
