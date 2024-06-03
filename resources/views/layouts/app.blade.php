@@ -9,7 +9,8 @@
         
         <title>{{ config('app.name', 'Laravel') }}</title>
         <!-- Scripts -->
-        @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/js/custom.js'])
+        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+        @vite(['resources/js/custom.js'])
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">

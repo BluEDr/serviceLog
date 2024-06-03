@@ -4,14 +4,13 @@ document.addEventListener('DOMContentLoaded',function(){
     // jsFuelConsumption(69);
 });
 
-function dokimi() {
-    console.log('dokimi');
-}
+
+console.log("mplamplaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
 function jsFuelConsumption(a) {
     console.log("assssssssssssssssssssssssssssssssss" + a);
     document.getElementById('fCunsumption').innerHTML = a;
 }
-
 console.log('custom.js loaded');
 window.validateFuelConsumptionForm = function (event) { //validation for a radio button checked in the fuel-consumption.blade
     event.preventDefault();
@@ -51,7 +50,7 @@ window.validateFuelConsumptionForm = function (event) { //validation for a radio
         document.getElementById("errorMsg2").innerHTML = "";
     }
 
-
+    document.getElementById('errorMsgNeedGraterKmValue').innerHTML = "";
     if (error === 0) 
         document.forms["myForm"].submit();
     else 
@@ -82,4 +81,5 @@ document.getElementById("startNewCalculationNo").addEventListener("change", func
         ).disabled = false);
     }
 });
+
 

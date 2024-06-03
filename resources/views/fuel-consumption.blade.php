@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-
 <h1> Fuel Consumption calculator for {{$vehicles->brand}} {{$vehicles->model}}: <span id="fCunsumption" style="color:red; font-weight: bold">-<span></h1>
 
 <div class='main-welcome'>
@@ -19,13 +18,15 @@
                             <td> {{$collection->km}} </td>
                             <td> {{$collection->lt}} </td>
                             <td> 
-                                @if ($collection->isFull === 1) 
-                                    Yes <span class='badge badge-success'>Success</span>
+                                {{($collection->isFull===1) ? "Yes" : "No"}} 
+                            </td>
+                            <td> 
+                                @if ($collection->isStartOfCalculating === 1) 
+                                    Yes <span class='badge bg-info'>Start New Meassure</span>
                                 @else
                                     No        
                                 @endif
                             </td>
-                            <td> {{($collection->isStartOfCalculating===1) ? "Yes" : "No"}} </td>
                             <td style="color:red"><a href="{{route('del-fuel-consumption',['id'=>$collection->id])}}">del</a></td>
                         </tr>
                     @endforeach 
@@ -51,6 +52,8 @@
         <p style="color: red" id="errorMsg1"></p>
         <p style="color: red" id="errorMsg2"></p>
         <p style="color: red" id="errorMsg3"></p>
+        <p style="color: red" id="errorMsgNeedGraterKmValue"></p>
+
         <form method="post" name="myForm" onsubmit="validateFuelConsumptionForm(event)" action="" >
             @csrf
             <div id="items">
@@ -78,10 +81,16 @@
 </div>
 
 
+
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         @if (session('fuelConsResult'))
             document.getElementById('fCunsumption').innerHTML = Math.round(({{session('fuelConsResult')}} + Number.EPSILON) * 100)/100 + " lt/100km";
+        @endif
+
+        @if (session('errorMsgNeedGraterKmValue'))
+            document.getElementById('errorMsgNeedGraterKmValue').innerHTML = "{{session('errorMsgNeedGraterKmValue')}}";
         @endif
     });
 </script>

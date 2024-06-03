@@ -25,13 +25,20 @@ class ManageFuel extends Controller
             } else {
                 $isStartOfCalc = 0;
             }
-            $gas = Gas::Create([
-                'vehicle_id' => $vehicles->id,
-                'km' => $request->input('km'), 
-                'lt' => $request->input('fuelAmound'),
-                'isFull' => $isFull,
-                'isStartOfCalculating' => $isStartOfCalc
-            ]);
+            
+            $gas_5 = Gas::where('vehicle_id',$vehicles->id)->orderBy('km','desc')->first();
+            if((!$gas_5) || ($request->input('km') > $gas_5->km)) {
+                $gas = Gas::Create([
+                    'vehicle_id' => $vehicles->id,
+                    'km' => $request->input('km'), 
+                    'lt' => $request->input('fuelAmound'),
+                    'isFull' => $isFull,
+                    'isStartOfCalculating' => $isStartOfCalc
+                ]);
+                session()->forget('errorMsgNeedGraterKmValue'); //kanonika ayto einai by default alla stin sygkekrimeni periptosi otan steilei meta to lathos tin sosti timi sta km kai oxi leigotera apo tin teleytaia fora me ayto den stelnete to session se antitheti periptosi xoris auto mono gia tin proti fora meta to lathos to session stelnete
+            } else { 
+                session()->flash('errorMsgNeedGraterKmValue','The km value that you are trying to insert is lower than the last one. Try again');
+            }
         }
         $gas = Gas::where('vehicle_id',$vehicles->id)->orderBy('created_at','desc')->get();
         $gas_2 = Gas::where('vehicle_id',$vehicles->id)->where('isStartOfCalculating',1)->orderBy('km','desc')->first();
