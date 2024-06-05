@@ -180,6 +180,5 @@
         </form>
     </div>
 </div>
-@endsection
-
 @include('templates.delete-modal')
+@endsection

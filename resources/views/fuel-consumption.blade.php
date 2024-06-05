@@ -48,7 +48,14 @@
                 </ul>
             </div>
         @endif
-        <h5><span class="badge bg-warning">Whow works?</span></h5>
+        <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+        
+
+
+{{-- TODO: Na checkaro pos tha trekso to popover tis bootsrap edo. mallon prepei na fortoso to js tis bootstrap i kati allo. na to do tin epomeni fora SOS --}}
+
+
+
         <h4><strong>Add a new refueling here:</strong></h4>
         <p style="color: red" id="errorMsg1"></p>
         <p style="color: red" id="errorMsg2"></p>
