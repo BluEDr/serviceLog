@@ -14,7 +14,15 @@
                     <th>delete</th>
                 </tr>
                     @foreach($gas as $collection)
-                        <tr>
+                        @if(session('lastStartOfCalcId'))
+                            @if($collection->km >= session('lastStartOfCalcId'))
+                                <tr class="table-success">
+                            @else
+                                <tr>
+                            @endif   
+                        @else
+                            <tr>
+                        @endif
                             <td> {{$collection->km}} </td>
                             <td> {{$collection->lt}} </td>
                             <td> 
@@ -37,7 +45,7 @@
             @endif
 
     </div>
-    <div class='welcome-25-div'>
+    <div class='container welcome-25-div'>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -48,8 +56,9 @@
                 </ul>
             </div>
         @endif
-        <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
-        
+        <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-content="Here, you can track the fuel consumption of your vehicle. To begin, select the radio button to start a new calculation. This marks the starting point of your measurement. You can refill your tank as many times as needed. To obtain a measurement result, make sure to completely fill your vehicle’s tank and select the "Full Tank" radio button. You can repeat this process multiple times within a single measurement period. For more accurate results, it's recommended to fill your tank multiple times. Each time you fill your tank completely, the measurement will become more accurate. Be careful not to forget to record every time you refill your tank, whether it's a full refill or not.">
+            How it works?
+        </button>        
 
 
 {{-- TODO: Na checkaro pos tha trekso to popover tis bootsrap edo. mallon prepei na fortoso to js tis bootstrap i kati allo. na to do tin epomeni fora SOS --}}

@@ -9,6 +9,7 @@ export default defineConfig({
                 "resources/css/app.css",
                 "resources/js/custom.js",
                 "resources/js/app.js",
+                "resources/js/popper.min.js",
             ],
             refresh: true,
         }),

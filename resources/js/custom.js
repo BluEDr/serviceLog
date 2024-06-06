@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded',function(){
     // jsFuelConsumption(69);
 });
 
-
 console.log("mplamplaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
 function jsFuelConsumption(a) {

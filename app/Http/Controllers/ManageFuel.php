@@ -44,6 +44,7 @@ class ManageFuel extends Controller
         $gas_2 = Gas::where('vehicle_id',$vehicles->id)->where('isStartOfCalculating',1)->orderBy('km','desc')->first();
         $gas_4 = Gas::where('vehicle_id',$vehicles->id)->where('isFULL',1)->orderBy('km','desc')->first();
         if(isset($gas_2)) {
+            session()->flash('lastStartOfCalcId',$gas_2->km);
             $gas_3 = Gas::where('vehicle_id',$vehicles->id)->where('km','>',$gas_2->km)->where('km','<=',$gas_4->km)->orderBy('km','desc')->get();
             if ($gas_3->count() !== 0)
                 session()->flash('fuelConsResult', ($this->getLiters($gas_3) * 100) / $this->getKms($gas_3,$gas_2));

@@ -7,6 +7,16 @@ import 'bootstrap';
 import "./bootstrap";
 import { createApp } from "vue";
 
+import * as bootstrap from 'bootstrap';
+
+// Initialize all popovers
+document.addEventListener('DOMContentLoaded', function () {
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl)
+    })
+});
+
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
