@@ -11,7 +11,6 @@
         <!-- Scripts -->
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
         @vite(['resources/js/custom.js'])
-        @vite(['resources/js/popper.min.js'])
 
 
     <!-- Fonts -->

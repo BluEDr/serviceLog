@@ -16,7 +16,7 @@
                     @foreach($gas as $collection)
                         @if(session('lastStartOfCalcId'))
                             @if($collection->km >= session('lastStartOfCalcId'))
-                                <tr class="table-success">
+                                <tr class="table-primary">
                             @else
                                 <tr>
                             @endif   
@@ -39,8 +39,8 @@
                         </tr>
                     @endforeach 
             </table>
-            <br><br>
-            @if (!isset($gas_2))
+            <br>
+            @if ($gas->count() < 1)
                 <p>There is no imported data to illustrate. </p>
             @endif
 
