@@ -54,10 +54,10 @@
                     {{$v->gas_type ? $v->gas_type->name : '-'}}
                 </td>
                 <td style="text-align: center">
-                    {{-- <a href="{{route('delete-vehicle',['id' => $v->id])}}"><button type="button" class="btn-close" aria-label="Close"></button> </a> --}}
 <!-- Button to trigger the modal -->
                     @if ($v!=null)
-                        <button type="button" class="btn-close delete-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="{{$v->id}}" data-brand="{{$v->brand}}" arial-lebel="Close">   </button>               
+                        <button type="button" class="btn-close delete-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="{{$v->id}}" data-brand="{{$v->brand}}" arial-lebel="Close">   </button>    
+
                     @endif
                  </td>
                  <td style="text-align: center">
@@ -85,12 +85,12 @@
             
                     deleteButtons.forEach(function(button) {
                         button.addEventListener('click', function() {
-                            var modalData = button.getAttribute('data-id');
                             var itemId = button.getAttribute('data-id');
                             var itemBrand = button.getAttribute('data-brand');
-                            
-                            // itemIdElement.textContent = itemId;
-                            // itemBrandElement.textContent = itemBrand;
+
+                            confirmDeleteBtn.onclick = function() {
+                                window.location.href = '{{ route('delete-vehicle', '') }}/' + itemId;
+                            };
                             itemBrandElement.textContent = itemBrand;
                         });
                     });

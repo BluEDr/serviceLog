@@ -4,13 +4,10 @@ document.addEventListener('DOMContentLoaded',function(){
     // jsFuelConsumption(69);
 });
 
-console.log("mplamplaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-
 function jsFuelConsumption(a) {
     console.log("assssssssssssssssssssssssssssssssss" + a);
     document.getElementById('fCunsumption').innerHTML = a;
 }
-console.log('custom.js loaded');
 window.validateFuelConsumptionForm = function (event) { //validation for a radio button checked in the fuel-consumption.blade
     event.preventDefault();
     console.log("innnn");

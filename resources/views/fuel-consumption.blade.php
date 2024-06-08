@@ -5,7 +5,7 @@
 
 <div class='main-welcome'>
     <div class='welcome-75-div'>
-            <table class="table table-striped">
+            <table class="table table-striped" style="text-align: center">
                 <tr>
                     <th>km</th>
                     <th>lt</th>
@@ -30,12 +30,12 @@
                             </td>
                             <td> 
                                 @if ($collection->isStartOfCalculating === 1) 
-                                    Yes <span class='badge bg-info'>Start New Meassure</span>
+                                    <span class='badge bg-info'>Start New Meassure</span>
                                 @else
                                     No        
                                 @endif
                             </td>
-                            <td style="color:red"><a href="{{route('del-fuel-consumption',['id'=>$collection->id])}}">del</a></td>
+                            <td style="color:red"><a class="btn btn-close delete-btn" role="button" aria-pressed="true" href="{{route('del-fuel-consumption',['id'=>$collection->id])}}"></a></td>
                         </tr>
                     @endforeach 
             </table>
@@ -55,17 +55,14 @@
                 
                 </ul>
             </div>
-        @endif
-        <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-content="Here, you can track the fuel consumption of your vehicle. To begin, select the radio button to start a new calculation. This marks the starting point of your measurement. You can refill your tank as many times as needed. To obtain a measurement result, make sure to completely fill your vehicle’s tank and select the "Full Tank" radio button. You can repeat this process multiple times within a single measurement period. For more accurate results, it's recommended to fill your tank multiple times. Each time you fill your tank completely, the measurement will become more accurate. Be careful not to forget to record every time you refill your tank, whether it's a full refill or not.">
-            How it works?
-        </button>        
-
-
-{{-- TODO: Na checkaro pos tha trekso to popover tis bootsrap edo. mallon prepei na fortoso to js tis bootstrap i kati allo. na to do tin epomeni fora SOS --}}
+        @endif     
 
 
 
         <h4><strong>Add a new refueling here:</strong></h4>
+        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="popover" data-bs-content="Here, you can track the fuel consumption of your vehicle. To begin, select the radio button to start a new calculation. This marks the starting point of your measurement. You can refill your tank as many times as needed. To obtain a measurement result, make sure to completely fill your vehicle’s tank and select the "Full Tank" radio button. You can repeat this process multiple times within a single measurement period. For more accurate results, it's recommended to fill your tank multiple times. Each time you fill your tank completely, the measurement will become more accurate. Be careful not to forget to record every time you refill your tank, whether it's a full refill or not.">
+            How it works?
+        </button>   
         <p style="color: red" id="errorMsg1"></p>
         <p style="color: red" id="errorMsg2"></p>
         <p style="color: red" id="errorMsg3"></p>
