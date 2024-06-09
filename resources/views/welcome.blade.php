@@ -57,7 +57,6 @@
 <!-- Button to trigger the modal -->
                     @if ($v!=null)
                         <button type="button" class="btn-close delete-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="{{$v->id}}" data-brand="{{$v->brand}}" arial-lebel="Close">   </button>    
-
                     @endif
                  </td>
                  <td style="text-align: center">
@@ -69,7 +68,6 @@
                  <td style="text-align: center">
                      <a href="{{route('fuel-consumption',['id' => $v->id])}}"><strong><img src="{{ asset('images/icons/gas.png') }}" alt="fuel consumption"></strong></i></a>
                  </td>
-                 {{-- TODO: edo apo pano na allakso to route --}}
             </tr>
             @endforeach
             </table>

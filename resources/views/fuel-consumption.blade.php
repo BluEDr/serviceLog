@@ -35,7 +35,9 @@
                                     No        
                                 @endif
                             </td>
-                            <td style="color:red"><a class="btn btn-close delete-btn" role="button" aria-pressed="true" href="{{route('del-fuel-consumption',['id'=>$collection->id])}}"></a></td>
+                            {{-- <td style="color:red"><a class="btn btn-close delete-btn" role="button" aria-pressed="true" href="{{route('del-fuel-consumption',['id'=>$collection->id])}}"></a></td> --}}
+                            <td style="text-align: center"><button type="button" class="btn-close delete-btn" data-bs-toggle="modal" data-bs-target="#delFuelConsModal" data-id="{{$collection->id}}" data-km="{{$collection->km}}" arial-lebel="Close">   </button>    
+                            </td>
                         </tr>
                     @endforeach 
             </table>
@@ -60,7 +62,7 @@
 
 
         <h4><strong>Add a new refueling here:</strong></h4>
-        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="popover" data-bs-content="Here, you can track the fuel consumption of your vehicle. To begin, select the radio button to start a new calculation. This marks the starting point of your measurement. You can refill your tank as many times as needed. To obtain a measurement result, make sure to completely fill your vehicle’s tank and select the "Full Tank" radio button. You can repeat this process multiple times within a single measurement period. For more accurate results, it's recommended to fill your tank multiple times. Each time you fill your tank completely, the measurement will become more accurate. Be careful not to forget to record every time you refill your tank, whether it's a full refill or not.">
+        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="popover" data-bs-content="Here, you can track the fuel consumption of your vehicle. To begin, select the radio button to start a new calculation. This marks the starting point of your measurement. You can refill your tank as many times as needed. To obtain a measurement result, make sure to completely fill your vehicle’s tank and select the 'Full Tank' radio button. You can repeat this process multiple times within a single measurement period. For more accurate results, it's recommended to fill your tank multiple times. Each time you fill your tank completely, the measurement will become more accurate. Be careful not to forget to record every time you refill your tank, whether it's a full refill or not.">
             How it works?
         </button>   
         <p style="color: red" id="errorMsg1"></p>
@@ -107,8 +109,28 @@
             document.getElementById('errorMsgNeedGraterKmValue').innerHTML = "{{session('errorMsgNeedGraterKmValue')}}";
         @endif
     });
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var deleteButtons = document.querySelectorAll('.delete-btn');
+        var itemIdElement = document.getElementById('itemId');
+        var itemKmElement = document.getElementById('itemKm');
+
+        deleteButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var itemId = button.getAttribute('data-id');          
+                var itemKm = button.getAttribute('data-km')
+
+                confirmDeleteBtn.onclick = function() {
+                    window.location.href = '{{ route('del-fuel-consumption', '') }}/' + itemId;
+                };
+                itemKmElement.textContent = itemKm;
+            });
+        });
+    });
 </script>
 
 
 
+@include('templates.delete-modal')
 @endsection

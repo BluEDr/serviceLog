@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded',function(){
     // jsFuelConsumption(69);
 });
 
+
+
 function jsFuelConsumption(a) {
     console.log("assssssssssssssssssssssssssssssssss" + a);
     document.getElementById('fCunsumption').innerHTML = a;
