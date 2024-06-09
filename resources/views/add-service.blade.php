@@ -42,11 +42,13 @@
                 </ul>
             </div>
         @endif
+        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="popover" data-bs-content="On this page, you can log your vehicle's service details to keep a record of all maintenance activities. This service helps you avoid forgetting any repairs or changes made in the past. Here, you can add completed services and set reminders for future ones. You need to enter the kilometers at which the service was performed. After that, select the procedure and it's recommended to add a description for each procedure. To add another procedure at the same mileage, press the 'Add a new procedure' button.">
+            How it works?
+        </button> <br><br>
         <h4><strong>Add a new service here:</strong></h4>
         <form method="post" action="">
             @csrf
             <script>
-                //FIXME: opoio aytokinito kai na epilekso gia diagrafei, moy diagrafei panta to teleytaio tis lisitans
                     document.addEventListener('DOMContentLoaded', function() { 
                     // Embedding the PHP array into a JavaScript variable
                     const serviceProcOptionsElement = @json($service_proc);
@@ -64,7 +66,7 @@
                             </select>
                             <h5>Add a description</h5>
                             <input type="text" name="description[]" placeholder="Description">
-                            <button type="button" class="remove-item">Remove</button>
+                            <button type="button" class="remove-item btn btn-secondary">Remove</button>
                         `;
                         itemsContainer.appendChild(newItem);
                     });
@@ -76,7 +78,7 @@
                     });
                 });
             </script>
-            <br><br><br>
+            
             <div id="items">
                 <h5>Km<span style="color: red">*</span></h5>
                 <input type="text" name="km" id="km" placeholder="Service km">
@@ -135,9 +137,10 @@
                 <h5>Add a description</h5>
                 <input type="text" name="description[]" placeholder="Description">
             </div>
-            <button type="button" id="add-item" class="btn btn-primary" style="margin-top: 5px">Add a new procedure</button>
             
             <input class="btn btn-primary" type="submit" value="Submit" style="margin-top: 5px">
+            <button type="button" id="add-item" class="btn btn-outline-danger" style="margin-top: 5px">Add a new procedure</button>
+            
         </form>
     </div>
 </div>

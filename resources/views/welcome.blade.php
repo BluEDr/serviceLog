@@ -9,7 +9,7 @@
         <h4><strong>Your vehicle data:</strong></h4>
         @if($vehicles->count() > 0)
             <table class="table table-striped">
-            <th>Brand</th><th>Model</th><th>Plate-Number</th><th>Km</th><th>Color</th><th>Vehicle Type</th><th>Gas Type</th><th style="text-align: center">Delete</th><th style="text-align: center">Edit</th><th style="text-align: center">New service</th><th style="text-align: center">Fuel consumption</th>
+            <th>Brand</th><th>Model</th><th>Plate-Number</th><th>Km</th><th>Color</th><th>Vehicle Type</th><th>Gas Type</th><th style="text-align: center">Edit</th><th style="text-align: center">New service</th><th style="text-align: center">Fuel consumption</th><th style="text-align: center">Delete</th>
             @foreach($vehicles as $v)
             <tr>
                 <td onclick="window.location='{{ route('vehicle-more', ['id' => $v->id]) }}';" style="cursor:pointer;">
@@ -53,12 +53,7 @@
                 <td onclick="window.location='{{ route('vehicle-more', ['id' => $v->id]) }}';" style="cursor:pointer;">
                     {{$v->gas_type ? $v->gas_type->name : '-'}}
                 </td>
-                <td style="text-align: center">
-<!-- Button to trigger the modal -->
-                    @if ($v!=null)
-                        <button type="button" class="btn-close delete-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="{{$v->id}}" data-brand="{{$v->brand}}" arial-lebel="Close">   </button>    
-                    @endif
-                 </td>
+
                  <td style="text-align: center">
                      <a href="{{route('edit-vehicle',['id' => $v->id])}}"><img src="{{ asset('images/icons/pen.png') }}" alt="Edit"></a>
                  </td>
@@ -68,6 +63,12 @@
                  <td style="text-align: center">
                      <a href="{{route('fuel-consumption',['id' => $v->id])}}"><strong><img src="{{ asset('images/icons/gas.png') }}" alt="fuel consumption"></strong></i></a>
                  </td>
+                 <td style="text-align: center">
+                    <!-- Button to trigger the modal -->
+                    @if ($v!=null)
+                        <button type="button" class="btn-close delete-btn" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="{{$v->id}}" data-brand="{{$v->brand}}" arial-lebel="Close">   </button>    
+                    @endif
+                </td>
             </tr>
             @endforeach
             </table>
