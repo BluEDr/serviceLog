@@ -74,7 +74,6 @@
             </table>
 
 
-        {{-- na ftiakso to delete modal na diagrafei otan patao to yes  --}}
         
             <script>
                 document.addEventListener('DOMContentLoaded', function() {

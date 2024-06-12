@@ -16,7 +16,7 @@
                     @foreach($gas as $collection)
                         @if(session('lastStartOfCalcId'))
                             @if($collection->km >= session('lastStartOfCalcId'))
-                                <tr class="table-primary">
+                                <tr class="table-danger">
                             @else
                                 <tr>
                             @endif   
@@ -73,7 +73,7 @@
         <form method="post" name="myForm" onsubmit="validateFuelConsumptionForm(event)" action="" >
             @csrf
             <div id="items">
-                <h5>Do you want to start a new fuel consumption calculation? The fuel tank has to be full.</h5>
+                <h5>Start a new measure? The fuel tank has to be full.</h5>
                 <div>
                     <input type="radio" id="startNewCalculationYes" name="startNewCalculation" value="True">
                     <label for="startNewCalculationYes">Yes</label>
@@ -87,7 +87,7 @@
                 <label for="isFullFalse">No</label>
                 </div>
                 <h5>Km<span style="color: red">*</span></h5>
-                <input type="text" name="km" id="km" placeholder="Service km">
+                <input type="text" name="km" id="km" placeholder="Km on tank refill">
                 <h5>liters/kwh<span style="color: red">*</span></h5>
                 <input type="text" name="fuelAmound" id="fuelAmound" placeholder="fuel amound">
                 <br>
