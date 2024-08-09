@@ -9,9 +9,11 @@
         {{-- <title>TOTO</title> --}}
         <title>{{ config('app.name', 'DriveWise') }}</title>
         <!-- Scripts -->
-        @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-        @vite(['resources/js/custom.js'])
 
+        {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+        {{-- @vite(['resources/js/custom.js']) --}}
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        <script src="{{ mix('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
