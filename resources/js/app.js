@@ -8,7 +8,15 @@ import "./bootstrap";
 import { createApp } from "vue";
 
 import * as bootstrap from 'bootstrap';
+import Vue from 'vue';
+import ExampleComponent from './components/ExampleComponent.vue';
 
+const app = new Vue({
+    el: '#app',
+    components: {
+        ExampleComponent
+    }
+});
 // Initialize all popovers
 document.addEventListener('DOMContentLoaded', function () {
     var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
@@ -25,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
  * to use in your application's views. An example is included for you.
  */
 
-const app = createApp({});
+// const app = createApp({});
 
 import ExampleComponent from "./components/ExampleComponent.vue";
 app.component("example-component", ExampleComponent);

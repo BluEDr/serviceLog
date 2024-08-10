@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Vehicle;
 use App\Models\Gas_type;
 use App\Models\service_procedure;
-use App\Models\junction_service_proc_vehicle;
+use App\Models\Junction_service_proc_vehicle;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
 

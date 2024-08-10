@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Vehicle;
-use App\models\Gas_type;
-use App\models\Gas;
+use App\Models\Gas_type;
+use App\Models\Gas;
 use Auth;
 
 class ManageFuel extends Controller
