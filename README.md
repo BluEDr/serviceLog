@@ -29,7 +29,6 @@ This project is open-source and available under the MIT License.
 ### Contact
 
 For questions or feedback, feel free to reach out via:
-
 + GitHub:   BluEDr
 + Email:    skordos88@gmail.com
 + LinkedIn: https://www.linkedin.com/in/tryfon-skordos-01a62a12a/
